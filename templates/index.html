@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Property Prediction</title>
+</head>
+<body>
+    <h1>Property Prediction</h1>
+    <form action="/predict/" method="post">
+        <label for="property_type">Property Type:</label>
+        <select name="property_type">
+            <option value="flat">Flat</option>
+            <option value="house">House</option>
+        </select><br>
+
+        <label for="sector">Sector:</label>
+        <input type="text" name="sector"><br>
+
+        <label for="bedRoom">Number of Bedrooms:</label>
+        <input type="number" name="bedRoom"><br>
+
+        <label for="bathroom">Number of Bathrooms:</label>
+        <input type="number" name="bathroom"><br>
+
+        <label for="balcony">Number of Balconies:</label>
+        <select name="balcony">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="0">0</option>
+            <option value="3+">3+</option>
+            <option value="3">3</option>
+        </select><br>
+
+        <label for="agePossession">Age of Possession:</label>
+        <select name="agePossession">
+            <option value="Relatively New">Relatively New</option>
+            <option value="Old Property">Old Property</option>
+            <option value="Moderately Old">Moderately Old</option>
+            <option value="New Property">New Property</option>
+            <option value="Under Construction">Under Construction</option>
+        </select><br>
+
+        <label for="built_up_area">Built-up Area:</label>
+        <input type="number" name="built_up_area"><br>
+
+        <label for="store_room">Has Store Room:</label>
+        <input type="checkbox" name="store_room" value="1"><br>
+
+        <label for="pooja_room">Has Pooja Room:</label>
+        <input type="checkbox" name="pooja_room" value="1"><br>
+
+        <label for="furnishing_type">Furnishing Type:</label>
+        <select name="furnishing_type">
+            <option value="unfurnished">Unfurnished</option>
+            <option value="semifurnished">Semi-furnished</option>
+            <option value="furnished">Fully furnished</option>
+        </select><br>
+
+        <label for="luxury_category">Luxury Category:</label>
+        <select name="luxury_category">
+            <option value="High">High</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+        </select><br>
+
+        <label for="floor_category">Floor Category:</label>
+        <select name="floor_category">
+            <option value="Low Floor">Low Floor</option>
+            <option value="Mid Floor">Mid Floor</option>
+            <option value="High Floor">High Floor</option>
+        </select><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
