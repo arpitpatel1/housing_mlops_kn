@@ -1,0 +1,13 @@
+schema: '2.0'
+stages:
+  data_loader:
+    cmd: python .\src\data\data_loader.py
+    deps:
+    - path: .\data\interim\properties_post_feature_selection_v2.csv
+      hash: md5
+      md5: 3d345d3eee85854d8f2e487feaac386d
+      size: 470691
+    - path: .\src\data\data_loader.py
+      hash: md5
+      md5: 7d2a06a5d6d3496be3f82ed425563f22
+      size: 2464

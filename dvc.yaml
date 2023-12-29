@@ -1,0 +1,11 @@
+stages:
+  data_loader:
+    cmd: python .\src\data\data_loader.py
+    deps:
+    - .\data\interim\properties_post_feature_selection_v2.csv
+    - .\src\data\data_loader.py
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step

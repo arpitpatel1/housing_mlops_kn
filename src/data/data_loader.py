@@ -61,8 +61,8 @@ if __name__ == "__main__":
 
     modeltrainer = ModelTrainer()
     score = modeltrainer.initiate_model_trainer(train_arr,test_arr)
-    # with Live(save_dvc_exp=True) as live:
-    #   live.log_metric('R2 score',score)
+    with Live(save_dvc_exp=True) as live:
+      live.log_metric('R2 score',score)
 
     artifacts_dir = Path.cwd() / 'artifacts'
     artifacts_dir.mkdir(parents=True, exist_ok=True)
