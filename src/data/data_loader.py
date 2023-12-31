@@ -14,6 +14,10 @@ from src.models.model_trainer import ModelTrainer
 from dvclive import Live
 from pathlib import Path
 
+import boto3
+from botocore.exceptions import NoCredentialsError
+from io import StringIO
+
 
 class DataIngestionConfig:
     # print(Path.home())
@@ -29,9 +33,55 @@ class DataIngestion:
         self.ingestion_config = DataIngestionConfig()
 
     def initiate_data_ingestion(self):
-        try:
-            input_file_path = Path.cwd() / "data" / "interim" / "properties_post_feature_selection_v2.csv"
-            df = pd.read_csv(input_file_path)
+        try:  
+            # input_file_path = Path.cwd() / "data" / "interim" / "properties_post_feature_selection_v2.csv"
+            # df = pd.read_csv(input_file_path)
+
+            def read_data_from_s3(s3_bucket, s3_key):
+                # Retrieve AWS credentials from GitHub Secrets
+                # print("AWS_ACCESS_KEY_ID:", os.environ.get('AWS_ACCESS_KEY_ID'))
+                # print("AWS_SECRET_ACCESS_KEY:", os.environ.get('AWS_SECRET_ACCESS_KEY'))
+                # print("AWS_REGION:", os.environ.get('AWS_REGION'))
+
+
+                aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
+                aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
+                aws_region = os.environ.get('AWS_REGION')
+
+                # Initialize a session using GitHub Secrets for AWS credentials
+                session = boto3.Session(
+                    aws_access_key_id=aws_access_key_id,
+                    aws_secret_access_key=aws_secret_access_key,
+                    region_name=aws_region
+                )
+
+                # Create an S3 client
+                s3_client = session.client('s3')
+
+                # Download the file from S3
+                try:
+                    # Use StringIO to read the CSV directly from the S3 object
+                    s3_response = s3_client.get_object(Bucket=s3_bucket, Key=s3_key)
+                    # s3_data = s3_response['Body'].read().decode('utf-8')
+                    # s3_csv = StringIO(s3_data)
+
+                    # Read the CSV into a DataFrame
+                    df = pd.read_csv(s3_response['Body'])
+                    print(df.shape)
+
+                    return df
+
+                except NoCredentialsError:
+                    print("Credentials not available")
+                except Exception as e:
+                    print(f"An error occurred: {e}")
+
+            # Example usage:
+            s3_bucket = 'mlops-kn'
+            s3_key = 'data/interim/properties_post_feature_selection_v2.csv'
+
+            df = read_data_from_s3(s3_bucket, s3_key)
+            print(df.shape)
   
 
             # df.drop(columns=['servant room', 'study room', 'others'], inplace=True)

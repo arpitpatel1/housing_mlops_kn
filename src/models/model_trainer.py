@@ -14,7 +14,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, mean_absolute_error
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
-from xgboost import XGBRegressor
+# from xgboost import XGBRegressor
 
 from src.utils.exception import CustomException
 from src.utils.utils import save_object, evaluate_models
