@@ -67,7 +67,6 @@ class DataIngestion:
 
                     # Read the CSV into a DataFrame
                     df = pd.read_csv(s3_response['Body'])
-                    print(df.shape)
 
                     return df
 
@@ -81,7 +80,6 @@ class DataIngestion:
             s3_key = 'data/interim/properties_post_feature_selection_v2.csv'
 
             df = read_data_from_s3(s3_bucket, s3_key)
-            print(df.shape)
   
 
             # df.drop(columns=['servant room', 'study room', 'others'], inplace=True)
@@ -111,8 +109,8 @@ if __name__ == "__main__":
 
     modeltrainer = ModelTrainer()
     score = modeltrainer.initiate_model_trainer(train_arr,test_arr)
-    with Live(save_dvc_exp=True) as live:
-      live.log_metric('R2 score',score)
+    # with Live(save_dvc_exp=True) as live:
+    #   live.log_metric('R2 score',score)
 
     artifacts_dir = Path.cwd() / 'artifacts'
     artifacts_dir.mkdir(parents=True, exist_ok=True)

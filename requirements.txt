@@ -16,4 +16,6 @@ bs4
 path
 category_encoders
 dvclive
+boto3
+botocore
 
