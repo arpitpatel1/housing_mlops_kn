@@ -1,0 +1,28 @@
+apiVersion: machinelearning.seldon.io/v1
+kind: SeldonDeployment
+metadata:
+  name: housing
+spec:
+  name: housing
+  predictors:
+  - componentSpecs:
+    - spec:
+        containers:
+        - name: housing
+          image: arpitppatel/housing-kn:v2
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "200m"
+          ports:
+          - containerPort: 8080
+            name: http
+    graph:
+      children: []
+      endpoint:
+        type: REST
+      name: housing
+      type: MODEL
+    name: housing
+    replicas: 1

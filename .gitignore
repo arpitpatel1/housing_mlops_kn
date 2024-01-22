@@ -86,3 +86,4 @@ target/
 .mypy_cache/
 /data
 # /models
+/mlruns
