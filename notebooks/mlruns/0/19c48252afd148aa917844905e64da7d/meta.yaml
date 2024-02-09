@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Arpit/Desktop/housing_mlops_kn/notebooks/mlruns/0/19c48252afd148aa917844905e64da7d/artifacts
+end_time: 1707451272510
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 19c48252afd148aa917844905e64da7d
+run_name: first_run
+run_uuid: 19c48252afd148aa917844905e64da7d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707451255008
+status: 3
+tags: []
+user_id: Arpit
